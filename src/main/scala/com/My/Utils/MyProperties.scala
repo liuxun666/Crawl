@@ -13,7 +13,7 @@ import scala.io.Source
   * Date: 2018/5/17
   * Email: liuzhao@66law.cn
   */
-object Properties {
+object MyProperties {
   private val log = LoggerFactory.getLogger(this.getClass.getSimpleName)
   lazy private val properties = new Properties()
   lazy val path: String = "conf/myCrawl.conf" //文件要放到resource文件夹下
