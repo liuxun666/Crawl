@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<c3p0-config>
+    <default-config>
+        <property name="jdbcUrl">jdbc:sqlserver://192.168.15.218;DatabaseName=hlv_66law_bigdata</property>
+        <property name="driverClass">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+        <property name="user">sa</property>
+        <property name="password">20040928</property>
+        <property name="acquireIncrement">10</property>
+        <property name="initialPoolSize">50</property>
+        <property name="minPoolSize">50</property>
+        <property name="maxPoolSize">200</property>
+    </default-config>
+
+    <named-config name="proxy">
+        <property name="jdbcUrl">jdbc:sqlserver://192.168.15.218;DatabaseName=hlv_66law_proxy</property>
+        <property name="driverClass">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+        <property name="user">sa</property>
+        <property name="password">20040928</property>
+        <property name="acquireIncrement">5</property>
+        <property name="initialPoolSize">20</property>
+        <property name="minPoolSize">20</property>
+        <property name="maxPoolSize">100</property>
+    </named-config>
+
+    <named-config name="question">
+        <property name="jdbcUrl">jdbc:sqlserver://192.168.15.218;DatabaseName=hlv_66law_question_history</property>
+        <property name="driverClass">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+        <property name="user">sa</property>
+        <property name="password">20040928</property>
+        <property name="acquireIncrement">3</property>
+        <property name="initialPoolSize">10</property>
+        <property name="minPoolSize">2</property>
+        <property name="maxPoolSize">20</property>
+    </named-config>
+
+    <named-config name="mysql">
+        <property name="jdbcUrl">jdbc:mysql://192.168.11.10:3306/weblog?characterEncoding=UTF8</property>
+        <property name="driverClass">com.mysql.jdbc.Driver</property>
+        <property name="user">root</property>
+        <property name="password">66law.cN</property>
+        <property name="acquireIncrement">3</property>
+        <property name="initialPoolSize">10</property>
+        <property name="minPoolSize">2</property>
+        <property name="maxPoolSize">20</property>
+    </named-config>
+
+    <named-config name="article">
+        <property name="jdbcUrl">jdbc:sqlserver://192.168.15.218;DatabaseName=hlv_66law_article</property>
+        <property name="driverClass">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+        <property name="user">sa</property>
+        <property name="password">20040928</property>
+        <property name="acquireIncrement">3</property>
+        <property name="initialPoolSize">10</property>
+        <property name="minPoolSize">2</property>
+        <property name="maxPoolSize">20</property>
+    </named-config>
+
+    <named-config name="topic">
+        <property name="jdbcUrl">jdbc:sqlserver://192.168.15.218;DatabaseName=hlv_66law_topic</property>
+        <property name="driverClass">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+        <property name="user">sa</property>
+        <property name="password">20040928</property>
+        <property name="acquireIncrement">3</property>
+        <property name="initialPoolSize">10</property>
+        <property name="minPoolSize">2</property>
+        <property name="maxPoolSize">20</property>
+    </named-config>
+
+    <named-config name="selfmedia">
+        <property name="jdbcUrl">jdbc:sqlserver://192.168.15.218;DatabaseName=hlv_66law_selfmedia</property>
+        <property name="driverClass">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+        <property name="user">sa</property>
+        <property name="password">20040928</property>
+        <property name="acquireIncrement">3</property>
+        <property name="initialPoolSize">10</property>
+        <property name="minPoolSize">2</property>
+        <property name="maxPoolSize">20</property>
+    </named-config>
+</c3p0-config>
