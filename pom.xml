@@ -14,29 +14,9 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
   </properties>
 
-  <dependencyManagement>
-    <dependencies>
-      <!-- Camel BOM -->
-      <dependency>
-        <groupId>org.apache.camel</groupId>
-        <artifactId>camel-parent</artifactId>
-        <version>2.21.1</version>
-        <scope>import</scope>
-        <type>pom</type>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
+
 
   <dependencies>
-
-    <dependency>
-      <groupId>org.apache.camel</groupId>
-      <artifactId>camel-core</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.camel</groupId>
-      <artifactId>camel-scala</artifactId>
-    </dependency>
 
     <!-- scala -->
     <dependency>
@@ -52,27 +32,11 @@
 
     <!-- logging -->
     <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-api</artifactId>
-      <scope>runtime</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-core</artifactId>
-      <scope>runtime</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-slf4j-impl</artifactId>
-      <scope>runtime</scope>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.17</version>
     </dependency>
 
-    <!-- testing -->
-    <dependency>
-      <groupId>org.apache.camel</groupId>
-      <artifactId>camel-test</artifactId>
-      <scope>test</scope>
-    </dependency>
     <!-- jsoup -->
     <dependency>
       <groupId>org.jsoup</groupId>
@@ -90,6 +54,18 @@
       <groupId>org.json4s</groupId>
       <artifactId>json4s-native_2.11</artifactId>
       <version>3.5.3</version>
+    </dependency>
+    <!-- lmakeister flatzip -->
+    <dependency>
+      <groupId>com.github.marklister</groupId>
+      <artifactId>product-collections_2.11</artifactId>
+      <version>1.4.5</version>
+    </dependency>
+    <!-- redis -->
+    <dependency>
+      <groupId>net.debasishg</groupId>
+      <artifactId>redisclient_2.11</artifactId>
+      <version>3.4</version>
     </dependency>
 
 

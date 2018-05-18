@@ -1,9 +1,9 @@
 package com.My.Utils
 
-import java.io.FileNotFoundException
+import java.io.{File, FileNotFoundException}
 import java.util.Properties
 
-import org.slf4j.LoggerFactory
+import org.apache.log4j.Logger
 
 import scala.io.Source
 
@@ -13,18 +13,20 @@ import scala.io.Source
   * Date: 2018/5/17
   * Email: liuzhao@66law.cn
   */
-object MyProperties {
-  private val log = LoggerFactory.getLogger(this.getClass.getSimpleName)
-  lazy private val properties = new Properties()
-  lazy val path: String = "conf/myCrawl.conf" //文件要放到resource文件夹下
-  lazy val defaultPath: String = "myCrawl.conf"
+object Conf {
+  private val log = Logger.getLogger(this.getClass.getSimpleName)
+  private val properties = new Properties()
+  private val path: String = "conf/myCrawl.conf" //文件要放到resource文件夹下
+  private val defaultPath: String = "myCrawl.conf"
   try{
     log.info(s"load properties from $path")
     properties.load(Source.fromFile(path).reader())
   }catch {
     case e: FileNotFoundException =>
       try {
-        log.info(s"error when load properties from $path try to load properties from default file $defaultPath")
+        val path1 = new File(path).getAbsolutePath
+        println(path1)
+        log.info(s"$path does not exist, try to load properties from default file $defaultPath")
         properties.load(Source.fromInputStream(this.getClass.getResourceAsStream(defaultPath)).reader())
       } catch {
         case e: FileNotFoundException =>

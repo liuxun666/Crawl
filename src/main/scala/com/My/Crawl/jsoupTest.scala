@@ -11,7 +11,7 @@ import org.jsoup.Connection.Method
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 
-import scala.collection.JavaConverters._
+import scala.collection.JavaConversions._
 import scala.collection.mutable
 import scala.io.Source
 import scala.util.Random
@@ -90,7 +90,7 @@ object jsoupTest {
   def crawl(platform: String, pageId: Int, data: mutable.Map[String, String], cookies: Map[String, String], writer: PrintWriter) = {
     data += ("pageIndex" -> s"$pageId")
     val response = Jsoup.connect("https://www.icourse163.org/web/j/courseBean.getCoursePanelListByFrontCategory.rpc?csrfKey=a87cf1db973945dfbe8e717a23d3234b")
-      .data(data.asJava)
+      .data(data)
 //      .cookies(cookies.asJava)
       .ignoreContentType(true)
       .timeout(60000)
