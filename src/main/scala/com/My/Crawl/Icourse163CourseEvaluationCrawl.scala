@@ -24,14 +24,16 @@ import scala.util.Random
 object Icourse163CourseEvaluationCrawl {
   def main(args: Array[String]): Unit = {
     val url = "https://www.icourse163.org/web/j/mocCourseV2RpcBean.getCourseEvaluatePaginationByCourseIdOrTermId.rpc?csrfKey=44d6e14dea89409d983d85440337b093"
-    val threadPool: ExecutorService = Executors.newFixedThreadPool(10)
+    val threadPool: ExecutorService = Executors.newFixedThreadPool(20)
     val processingTaskCount = new AtomicInteger()
     val random = new Random(42)
     while (hasMoreTask() || processingTaskCount.get() > 0){
+      processingTaskCount.incrementAndGet()
       if(hasMoreTask()){
         val task = new Runnable {
           override def run(): Unit = {
             process(url)
+            processingTaskCount.decrementAndGet()
             Thread.sleep(random.nextInt(2000) +  5000)
           }
         }
@@ -70,8 +72,8 @@ object Icourse163CourseEvaluationCrawl {
               stmt.setString(1, platform)
               stmt.setString(2, courseId)
               stmt.setString(3, content)
-              stmt.setInt(4, agreecount)
-              stmt.setFloat(5, star)
+              stmt.setInt(4, agreecount.intValue())
+              stmt.setDouble(5, star)
               stmt.setString(6, user)
               stmt.addBatch()
             case _ =>
@@ -88,6 +90,7 @@ object Icourse163CourseEvaluationCrawl {
       }catch {
         case e: Exception =>
           println(s"error $task")
+          e.printStackTrace()
           RedisUtil.lpush("pages", task.get)
       }
 
@@ -99,6 +102,7 @@ object Icourse163CourseEvaluationCrawl {
     val response = Jsoup.connect(url)
       .data(data)
       .cookies(cookies)
+      .timeout(60000)
       .ignoreContentType(true)
       .method(method)
       .execute()
@@ -108,13 +112,13 @@ object Icourse163CourseEvaluationCrawl {
       val json = parse(response.body())
       val pageCount = (json \\ "totlePageCount").values
       val list = json \ "result" \ "list"
-      val agreeCount = (list \ "agreeCount").values.asInstanceOf[List[Int]]
+      val agreeCount = (list \ "agreeCount").values.asInstanceOf[List[BigInt]]
       val content = (list \ "content").values.asInstanceOf[List[String]]
-      val star = (list \ "mark").values.asInstanceOf[List[Float]]
+      val star = (list \ "mark").values.asInstanceOf[List[Double]]
       val userName = (list \ "userNickName" ).values.asInstanceOf[List[String]]
       import com.github.marklister.collections._
       val resultList = agreeCount flatZip content flatZip star flatZip userName
-      (pageCount.asInstanceOf[Int], resultList)
+      (pageCount.asInstanceOf[BigInt].intValue(), resultList)
     }else(0, CollSeq4(Nil))
 
   }

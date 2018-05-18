@@ -12,8 +12,6 @@ import scala.io.Source
   */
 object ImportTask2Redis {
   def main(args: Array[String]): Unit = {
-    println(Conf.get("redis_host"))
-    println(Conf.get("redis_port").toInt)
     Conf.get("redis_client_no").toInt
     Some(Conf.get("redis_auth"))
     Conf.get("redis_database").toInt
@@ -21,6 +19,6 @@ object ImportTask2Redis {
       val fields = line.split(",")
       fields(0) + "\001" + fields(1) + "\001" + 1
     }).toList
-    RedisUtil.lpush("pages", ids)
+    RedisUtil.lpush("pages", ids: _*)
   }
 }

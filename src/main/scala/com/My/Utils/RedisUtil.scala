@@ -20,7 +20,7 @@ object RedisUtil {
   }
 
   def lpush(key: Any,value: Any *): Option[Long] = {
-    redisClientPool.withClient(client => client.lpush(key, value.head, value.drop(1)))
+    redisClientPool.withClient(client => client.lpush(key, value.head, value.drop(1): _*))
   }
 
   def llen(key: Any): Option[Long] = {

@@ -67,6 +67,12 @@
       <artifactId>redisclient_2.11</artifactId>
       <version>3.4</version>
     </dependency>
+    <!-- mysql -->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>6.0.6</version>
+    </dependency>
 
 
 
@@ -147,7 +153,7 @@
         <artifactId>exec-maven-plugin</artifactId>
         <version>1.6.0</version>
         <configuration>
-          <mainClass>com.My.MyRouteMain</mainClass>
+          <mainClass></mainClass>
         </configuration>
       </plugin>
     </plugins>
