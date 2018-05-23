@@ -28,8 +28,8 @@ object Icourse163CourseEvaluationCrawl {
     val processingTaskCount = new AtomicInteger()
     val random = new Random(42)
     while (hasMoreTask() || processingTaskCount.get() > 0){
-      processingTaskCount.incrementAndGet()
       if(hasMoreTask()){
+        processingTaskCount.incrementAndGet()
         val task = new Runnable {
           override def run(): Unit = {
             process(url)
